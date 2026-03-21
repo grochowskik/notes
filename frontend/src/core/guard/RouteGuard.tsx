@@ -1,9 +1,9 @@
 'use client';
 
-import { type ReactNode, useEffect } from 'react';
-import { usePrivileges } from '@/hooks/usePrivileges';
 import { useRedirect } from '@/hooks';
+import { usePrivileges } from '@/hooks/usePrivileges';
 import type { Permission, UserRole } from '@/redux/slice/user';
+import { type ReactNode, useEffect } from 'react';
 
 interface RouteGuardProps {
   children: ReactNode;

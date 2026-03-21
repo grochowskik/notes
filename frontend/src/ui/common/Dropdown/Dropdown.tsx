@@ -1,10 +1,10 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import { Icon } from '@/ui';
 import { useClickOutside, useEscapeKey } from '@/hooks';
-import { dropdownStyles } from './Dropdown.styles';
+import { Icon } from '@/ui';
 import { cn } from '@/utils';
+import { useRef, useState } from 'react';
+import { dropdownStyles } from './Dropdown.styles';
 
 export type DropdownOption = {
   label: string;

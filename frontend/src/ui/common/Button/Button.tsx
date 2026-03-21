@@ -1,7 +1,7 @@
-import React from 'react';
-import { buttonStyles } from './Button.styles';
 import { LoaderIcon } from '@/ui';
 import { cn } from '@/utils';
+import React from 'react';
+import { buttonStyles } from './Button.styles';
 
 type ButtonVariant = keyof typeof buttonStyles.variants;
 

@@ -1,6 +1,6 @@
+import { cn } from '@/utils';
 import { tableStyles } from '../Table.styles';
 import { TableHeaderCellProps } from '../Table.type';
-import { cn } from '@/utils';
 
 const TableHeaderCell = ({
   children,

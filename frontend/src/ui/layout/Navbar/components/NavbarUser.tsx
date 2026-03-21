@@ -1,12 +1,12 @@
 'use client';
 
-import Link from 'next/link';
-import { useRef, useState, useCallback } from 'react';
-import { navbarStyles } from '../Navbar.styles';
-import { ThemeToggle } from '@/ui';
-import { useDispatch } from 'react-redux';
+import { useClickOutside, useRedirect } from '@/hooks';
 import { setLoggedIn } from '@/redux/slice/user';
-import { useRedirect, useClickOutside } from '@/hooks';
+import { ThemeToggle } from '@/ui';
+import Link from 'next/link';
+import { useCallback, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { navbarStyles } from '../Navbar.styles';
 
 export const NavbarUser = () => {
   const [isOpen, setIsOpen] = useState(false);

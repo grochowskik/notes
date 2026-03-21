@@ -1,6 +1,6 @@
+import { Loader2 } from 'lucide-react';
 import React from 'react';
 import { loaderStyles } from './Loader.styles';
-import { Loader2 } from 'lucide-react';
 
 type LoaderProps = {
   children?: React.ReactNode;

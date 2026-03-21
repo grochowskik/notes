@@ -1,7 +1,7 @@
 'use client';
 
-import { useSyncExternalStore } from 'react';
 import { Toggle } from '@/ui';
+import { useSyncExternalStore } from 'react';
 
 const themeStore = {
   getSnapshot: () => document.documentElement.getAttribute('data-theme'),
@@ -20,7 +20,7 @@ const ThemeToggle = () => {
   const theme = useSyncExternalStore(
     themeStore.subscribe,
     themeStore.getSnapshot,
-    themeStore.getServerSnapshot,
+    themeStore.getServerSnapshot
   );
 
   const toggle = () => {

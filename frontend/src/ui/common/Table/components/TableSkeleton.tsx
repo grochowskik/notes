@@ -1,6 +1,6 @@
+import { TableBodyCell, TableRow } from '@/ui';
 import { tableStyles } from '../Table.styles';
 import { TableSkeletonProps } from '../Table.type';
-import { TableRow, TableBodyCell } from '@/ui';
 
 const TableSkeleton = ({
   rows = 5,

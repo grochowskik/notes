@@ -1,5 +1,5 @@
-import { http, HttpResponse } from 'msw';
 import type { Note, NoteListResponse } from '@/core/api/notes/types';
+import { http, HttpResponse } from 'msw';
 
 export const mockNote: Note = {
   id: 'note-1',
@@ -22,15 +22,13 @@ export const mockNoteListResponse: NoteListResponse = {
 
 export const notesHandlers = [
   http.post('/api/notes/list', () =>
-    HttpResponse.json({ result: mockNoteListResponse }),
+    HttpResponse.json({ result: mockNoteListResponse })
   ),
-  http.post('/api/notes/create', () =>
-    HttpResponse.json({ result: mockNote }),
-  ),
+  http.post('/api/notes/create', () => HttpResponse.json({ result: mockNote })),
   http.post('/api/notes/update', () =>
-    HttpResponse.json({ result: { ...mockNote, status: 'completed' as const } }),
+    HttpResponse.json({ result: { ...mockNote, status: 'completed' as const } })
   ),
   http.post('/api/notes/cancel', () =>
-    HttpResponse.json({ result: { ...mockNote, status: 'cancelled' as const } }),
+    HttpResponse.json({ result: { ...mockNote, status: 'cancelled' as const } })
   ),
 ];

@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 import useEscapeKey from '../useEscapeKey';
 
 function TestComponent({
@@ -40,7 +40,9 @@ describe('useEscapeKey', () => {
   it('removes event listener on unmount', () => {
     const removeSpy = vi.spyOn(document, 'removeEventListener');
     const callback = vi.fn();
-    const { unmount } = render(<TestComponent callback={callback} isActive={true} />);
+    const { unmount } = render(
+      <TestComponent callback={callback} isActive={true} />
+    );
     unmount();
     expect(removeSpy).toHaveBeenCalledWith('keydown', expect.any(Function));
     removeSpy.mockRestore();

@@ -1,9 +1,9 @@
 'use client';
 
-import { KeyboardEvent, FocusEvent, ChangeEvent } from 'react';
-import { sanitizeAmount, formatAmountValue } from '@/utils';
-import FormInput from './FormInput';
+import { formatAmountValue, sanitizeAmount } from '@/utils';
+import { ChangeEvent, FocusEvent, KeyboardEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
+import FormInput from './FormInput';
 
 export interface AmountInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;

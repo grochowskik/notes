@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 import Toggle from '../Toggle';
 
 describe('Toggle', () => {
@@ -37,7 +37,12 @@ describe('Toggle', () => {
 
   it('renders both labels simultaneously', () => {
     render(
-      <Toggle checked={false} leftLabel="Off" rightLabel="On" onChange={vi.fn()} />,
+      <Toggle
+        checked={false}
+        leftLabel="Off"
+        rightLabel="On"
+        onChange={vi.fn()}
+      />
     );
     expect(screen.getByText('Off')).toBeInTheDocument();
     expect(screen.getByText('On')).toBeInTheDocument();

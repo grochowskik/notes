@@ -1,10 +1,10 @@
 'use client';
 
+import { cn } from '@/utils';
+import { CircleAlert } from 'lucide-react';
 import React, { memo } from 'react';
 import { useFormContext, useFormState } from 'react-hook-form';
 import { formStyles } from './FormInput.styles';
-import { CircleAlert } from 'lucide-react';
-import { cn } from '@/utils';
 
 export interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;

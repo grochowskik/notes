@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import validateRegon from '../regon';
 
 const VALID_REGON_9 = '123456785';

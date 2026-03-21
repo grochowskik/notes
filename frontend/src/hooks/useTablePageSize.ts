@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 const STORAGE_KEY = 'app.table';
 
@@ -36,7 +36,7 @@ function writePageSize(tableId: string, size: number) {
 
 export function useTablePageSize(tableId: string, defaultSize = 10) {
   const [pageSize, setPageSizeState] = useState<number>(
-    () => readPageSize(tableId) ?? defaultSize,
+    () => readPageSize(tableId) ?? defaultSize
   );
 
   const setPageSize = useCallback(
@@ -44,7 +44,7 @@ export function useTablePageSize(tableId: string, defaultSize = 10) {
       writePageSize(tableId, size);
       setPageSizeState(size);
     },
-    [tableId],
+    [tableId]
   );
 
   return { pageSize, setPageSize };

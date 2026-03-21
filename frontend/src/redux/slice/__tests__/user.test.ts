@@ -1,14 +1,20 @@
-import { describe, it, expect, vi } from 'vitest';
-import userReducer, { setLoggedIn, setLifetime, setTimestamp } from '../user';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { describe, expect, it, vi } from 'vitest';
+import userReducer, { setLifetime, setLoggedIn, setTimestamp } from '../user';
 
-const initialState = { loggedIn: false, lifetime: null, timestamp: null, role: null, permissions: [] };
+const initialState = {
+  loggedIn: false,
+  lifetime: null,
+  timestamp: null,
+  role: null,
+  permissions: [],
+};
 
 describe('user slice', () => {
   describe('initial state', () => {
     it('has correct initial state', () => {
       expect(
-        userReducer(undefined, { type: '@@INIT' } as PayloadAction),
+        userReducer(undefined, { type: '@@INIT' } as PayloadAction)
       ).toEqual(initialState);
     });
   });
@@ -17,7 +23,7 @@ describe('user slice', () => {
     it('sets loggedIn to true', () => {
       const state = userReducer(
         initialState,
-        setLoggedIn({ isLoggedIn: true }),
+        setLoggedIn({ isLoggedIn: true })
       );
       expect(state.loggedIn).toBe(true);
     });
@@ -25,7 +31,7 @@ describe('user slice', () => {
     it('sets loggedIn to false', () => {
       const state = userReducer(
         { ...initialState, loggedIn: true },
-        setLoggedIn({ isLoggedIn: false }),
+        setLoggedIn({ isLoggedIn: false })
       );
       expect(state.loggedIn).toBe(false);
     });
@@ -40,7 +46,7 @@ describe('user slice', () => {
     it('can update lifetime to a new value', () => {
       const state = userReducer(
         { ...initialState, lifetime: 1000 },
-        setLifetime({ lifetime: 7200 }),
+        setLifetime({ lifetime: 7200 })
       );
       expect(state.lifetime).toBe(7200);
     });
@@ -77,7 +83,13 @@ describe('user slice', () => {
 
   describe('action independence', () => {
     it('does not mutate other fields when setting loggedIn', () => {
-      const prev = { loggedIn: false, lifetime: 3600, timestamp: 999, role: null, permissions: [] as import('../user').Permission[] };
+      const prev = {
+        loggedIn: false,
+        lifetime: 3600,
+        timestamp: 999,
+        role: null,
+        permissions: [] as import('../user').Permission[],
+      };
       const state = userReducer(prev, setLoggedIn({ isLoggedIn: true }));
       expect(state.lifetime).toBe(3600);
       expect(state.timestamp).toBe(999);

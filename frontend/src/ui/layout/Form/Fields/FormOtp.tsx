@@ -1,10 +1,10 @@
 'use client';
 
-import { formStyles } from './FormInput.styles';
-import React, { useRef, useState, useEffect } from 'react';
-import { useFormContext } from 'react-hook-form';
 import { Button } from '@/ui';
 import { cn } from '@/utils';
+import React, { useEffect, useRef, useState } from 'react';
+import { useFormContext } from 'react-hook-form';
+import { formStyles } from './FormInput.styles';
 
 type OtpInputProps = {
   loading?: boolean;
@@ -47,7 +47,7 @@ function OtpInput({ length = 6, name, loading, disabled }: OtpInputProps) {
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    index: number,
+    index: number
   ) => {
     const value = e.target.value.slice(-1);
     if (!/^\d*$/.test(value)) return;
@@ -63,7 +63,7 @@ function OtpInput({ length = 6, name, loading, disabled }: OtpInputProps) {
 
   const handleKeyDown = (
     e: React.KeyboardEvent<HTMLInputElement>,
-    index: number,
+    index: number
   ) => {
     if (e.key === 'Backspace') {
       if (otp[index] === '' && index > 0) {
@@ -129,7 +129,10 @@ function OtpInput({ length = 6, name, loading, disabled }: OtpInputProps) {
       </div>
 
       {hasError && (
-        <span role="alert" className="text-error text-sm mt-2 block text-center">
+        <span
+          role="alert"
+          className="text-error text-sm mt-2 block text-center"
+        >
           {errors[name]?.message as string}
         </span>
       )}

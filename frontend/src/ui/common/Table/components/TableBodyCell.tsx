@@ -1,6 +1,6 @@
+import { cn } from '@/utils';
 import { tableStyles } from '../Table.styles';
 import { TableBodyCellProps } from '../Table.type';
-import { cn } from '@/utils';
 
 const TableCell = ({ children, className, ...props }: TableBodyCellProps) => {
   return (

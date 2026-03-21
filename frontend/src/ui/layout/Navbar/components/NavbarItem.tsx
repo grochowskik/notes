@@ -1,10 +1,10 @@
 'use client';
 
-import Link from 'next/link';
-import { navbarStyles } from '../Navbar.styles';
 import { Nav } from '@/config';
-import { usePathname } from 'next/navigation';
 import { cn } from '@/utils';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { navbarStyles } from '../Navbar.styles';
 
 export const NavbarItem = ({ nav }: { nav: Nav }) => {
   const { base, active, inactive } = navbarStyles.navItem;

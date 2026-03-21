@@ -1,8 +1,8 @@
-import { describe, it, expect, vi } from 'vitest';
+import { renderWithProviders } from '@/tests/utils/render';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { describe, expect, it, vi } from 'vitest';
 import { LoginForm } from '../LoginForm';
-import { renderWithProviders } from '@/tests/utils/render';
 
 vi.mock('next/navigation', () => ({
   useRouter: () => ({ push: vi.fn(), replace: vi.fn() }),
@@ -19,7 +19,7 @@ describe('LoginForm', () => {
   it('renders a submit button', () => {
     renderWithProviders(<LoginForm />);
     expect(
-      screen.getByRole('button', { name: 'Zaloguj się' }),
+      screen.getByRole('button', { name: 'Zaloguj się' })
     ).toBeInTheDocument();
   });
 
@@ -55,7 +55,7 @@ describe('LoginForm', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText('Hasło musi mieć minimum 8 znaków'),
+        screen.getByText('Hasło musi mieć minimum 8 znaków')
       ).toBeInTheDocument();
     });
   });
@@ -69,7 +69,7 @@ describe('LoginForm', () => {
     renderWithProviders(<LoginForm />);
     expect(screen.getByLabelText('Adres Email')).toHaveAttribute(
       'type',
-      'email',
+      'email'
     );
   });
 });

@@ -1,9 +1,9 @@
 'use client';
 
-import { Loader, Navbar } from '@/ui';
-import { pageStyles } from './page.styles';
-import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
+import { Loader, Navbar } from '@/ui';
+import { useSelector } from 'react-redux';
+import { pageStyles } from './page.styles';
 
 type PageProps = {
   children?: React.ReactNode;

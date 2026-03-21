@@ -1,7 +1,7 @@
 'use client';
 
-import { navbarStyles } from '../Navbar.styles';
 import { Nav, navigation } from '@/config';
+import { navbarStyles } from '../Navbar.styles';
 import { NavbarItem } from './NavbarItem';
 
 export const NavbarSection = () => {

@@ -6,9 +6,9 @@ export { formatNip } from './formatters/formatNip';
 export { formatPhoneNumber } from './formatters/formatPhoneNumber';
 
 export { cn } from './helpers/className';
-export { default as sanitizeAmount } from './helpers/sanitizeAmount';
 export { decodeBase64 } from './helpers/decodeBase64';
 export { replaceComma } from './helpers/replaceComma';
+export { default as sanitizeAmount } from './helpers/sanitizeAmount';
 export { default as toBase64 } from './helpers/toBase64';
 export { default as toBool } from './helpers/toBool';
 

@@ -1,8 +1,8 @@
-import { useState, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Icon, RadioSelect } from '@/ui';
 import { useClickOutside } from '@/hooks';
+import { Icon, RadioSelect } from '@/ui';
 import { cn } from '@/utils';
+import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const SUPPORTED_LANGUAGES = [
   { label: 'Polski (PL)', value: 'pl' },

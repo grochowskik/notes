@@ -1,10 +1,10 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import {
-  useNotesList,
-  useCreateNote,
-  useUpdateNote,
   useCancelNote,
+  useCreateNote,
+  useNotesList,
+  useUpdateNote,
 } from '../hooks';
 
 vi.mock('@/core', () => ({
@@ -14,7 +14,7 @@ vi.mock('@/core', () => ({
   useDelete: vi.fn(),
 }));
 
-import { useGet, usePost, usePatch, useDelete } from '@/core';
+import { useDelete, useGet, usePatch, usePost } from '@/core';
 
 const mockQueryResult = { data: undefined, isLoading: false, isError: false };
 const mockMutationResult = {
@@ -26,16 +26,16 @@ const mockMutationResult = {
 
 beforeEach(() => {
   vi.mocked(useGet).mockReturnValue(
-    mockQueryResult as ReturnType<typeof useGet>,
+    mockQueryResult as ReturnType<typeof useGet>
   );
   vi.mocked(usePost).mockReturnValue(
-    mockMutationResult as unknown as ReturnType<typeof usePost>,
+    mockMutationResult as unknown as ReturnType<typeof usePost>
   );
   vi.mocked(usePatch).mockReturnValue(
-    mockMutationResult as unknown as ReturnType<typeof usePatch>,
+    mockMutationResult as unknown as ReturnType<typeof usePatch>
   );
   vi.mocked(useDelete).mockReturnValue(
-    mockMutationResult as unknown as ReturnType<typeof useDelete>,
+    mockMutationResult as unknown as ReturnType<typeof useDelete>
   );
 });
 
@@ -62,7 +62,7 @@ describe('useCreateNote', () => {
     renderHook(() => useCreateNote());
     expect(usePost).toHaveBeenCalledWith(
       '/notes_create',
-      expect.objectContaining({ invalidateQueriesList: ['/notes_list'] }),
+      expect.objectContaining({ invalidateQueriesList: ['/notes_list'] })
     );
   });
 
@@ -78,11 +78,8 @@ describe('useUpdateNote', () => {
     expect(usePatch).toHaveBeenCalledWith(
       '/notes_update',
       expect.objectContaining({
-        invalidateQueriesList: expect.arrayContaining([
-          '/notes_list',
-          '/note',
-        ]),
-      }),
+        invalidateQueriesList: expect.arrayContaining(['/notes_list', '/note']),
+      })
     );
   });
 });
@@ -93,11 +90,8 @@ describe('useCancelNote', () => {
     expect(useDelete).toHaveBeenCalledWith(
       '/notes_cancel',
       expect.objectContaining({
-        invalidateQueriesList: expect.arrayContaining([
-          '/notes_list',
-          '/note',
-        ]),
-      }),
+        invalidateQueriesList: expect.arrayContaining(['/notes_list', '/note']),
+      })
     );
   });
 });

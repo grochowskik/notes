@@ -12,7 +12,7 @@ const usePagination = (defaultPageNo = 1, defaultPageSize = 20) => {
     newPage: number | string,
     pageSize?: number,
     firstId?: string,
-    lastId?: string,
+    lastId?: string
   ) => {
     setPageNo(newPage);
     if (lastId !== undefined) setNextPage(lastId);

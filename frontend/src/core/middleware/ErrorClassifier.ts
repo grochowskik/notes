@@ -1,6 +1,6 @@
-import axios from 'axios';
 import type { AxiosError } from 'axios';
-import { ErrorType, ClassifiedError } from './types';
+import axios from 'axios';
+import { ClassifiedError, ErrorType } from './types';
 
 class ErrorClassifier {
   static classify(error: unknown): ClassifiedError {
@@ -71,7 +71,7 @@ class ErrorClassifier {
   static shouldRetry(
     error: unknown,
     attemptNumber: number,
-    maxAttempts: number = 3,
+    maxAttempts: number = 3
   ): boolean {
     if (attemptNumber >= maxAttempts) return false;
 

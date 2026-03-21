@@ -1,6 +1,6 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { useRef } from 'react';
+import { describe, expect, it, vi } from 'vitest';
 import useClickOutside from '../useClickOutside';
 
 function TestComponent({ handler }: { handler: () => void }) {
@@ -8,7 +8,9 @@ function TestComponent({ handler }: { handler: () => void }) {
   useClickOutside(ref, handler);
   return (
     <div>
-      <div ref={ref} data-testid="inside">Inside</div>
+      <div ref={ref} data-testid="inside">
+        Inside
+      </div>
       <div data-testid="outside">Outside</div>
     </div>
   );

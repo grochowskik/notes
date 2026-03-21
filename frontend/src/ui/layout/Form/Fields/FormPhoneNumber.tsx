@@ -1,10 +1,10 @@
 'use client';
 
-import { memo } from 'react';
-import { useFormContext, useController } from 'react-hook-form';
 import { Dropdown } from '@/ui';
-import { formStyles } from './FormInput.styles';
 import { cn } from '@/utils';
+import { memo } from 'react';
+import { useController, useFormContext } from 'react-hook-form';
+import { formStyles } from './FormInput.styles';
 
 const DIAL_CODES = [
   { label: '+1', value: '1' },

@@ -1,8 +1,8 @@
-import { infotipStyles } from './Infotip.styles';
-import { useRef, useState, type ReactNode } from 'react';
 import { Icon } from '@/ui';
-import { createPortal } from 'react-dom';
 import { cn } from '@/utils';
+import { useRef, useState, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
+import { infotipStyles } from './Infotip.styles';
 
 type MoreProps = {
   children?: ReactNode;
@@ -64,7 +64,7 @@ const Infotip = ({
           >
             {textInfo || children}
           </span>,
-          document.body,
+          document.body
         )}
     </div>
   );

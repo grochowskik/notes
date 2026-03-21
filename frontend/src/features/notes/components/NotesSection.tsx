@@ -1,9 +1,9 @@
 'use client';
 
 import { Button, Section } from '@/ui';
-import { NotesTable } from './NotesTable';
-import { NotesAddModal } from './NoteAddModal';
 import { useState } from 'react';
+import { NotesAddModal } from './NoteAddModal';
+import { NotesTable } from './NotesTable';
 
 export function NotesSection() {
   const [show, setShow] = useState(false);

@@ -22,7 +22,13 @@ export const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
     'users:read',
     'users:write',
   ],
-  manager: ['notes:read', 'notes:write', 'notes:delete', 'settings:read', 'users:read'],
+  manager: [
+    'notes:read',
+    'notes:write',
+    'notes:delete',
+    'settings:read',
+    'users:read',
+  ],
   user: ['notes:read', 'notes:write'],
   guest: ['notes:read'],
 };
@@ -69,8 +75,14 @@ const userSlice = createSlice({
   },
 });
 
-export const { setLoggedIn, setLifetime, setTimestamp, setRole, setPermissions, clearUser } =
-  userSlice.actions;
+export const {
+  setLoggedIn,
+  setLifetime,
+  setTimestamp,
+  setRole,
+  setPermissions,
+  clearUser,
+} = userSlice.actions;
 
 export const selectUserRole = (state: RootState) => state.user.role;
 export const selectPermissions = (state: RootState) => state.user.permissions;

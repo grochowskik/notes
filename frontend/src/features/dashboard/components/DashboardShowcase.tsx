@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useRedirect } from '@/hooks';
 import {
   Accordion,
   Button,
@@ -19,7 +18,8 @@ import {
   ThemeToggle,
   Toggle,
 } from '@/ui';
-import { useRedirect } from '@/hooks';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 const radioOptions = [
   { label: 'Option A', value: 'a' },

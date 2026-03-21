@@ -1,16 +1,16 @@
 'use client';
 
+import { useEscapeKey } from '@/hooks';
+import { LoaderIcon, ModalBody, ModalFooter, ModalHeader } from '@/ui';
+import { cn } from '@/utils';
 import React, {
-  useCallback,
-  type ReactNode,
-  useContext,
   createContext,
+  useCallback,
+  useContext,
+  type ReactNode,
 } from 'react';
 import { createPortal } from 'react-dom';
 import { modalStyles } from './Modal.styles';
-import { useEscapeKey } from '@/hooks';
-import { cn } from '@/utils';
-import { LoaderIcon, ModalBody, ModalFooter, ModalHeader } from '@/ui';
 
 const { overlay, backdrop, container } = modalStyles;
 

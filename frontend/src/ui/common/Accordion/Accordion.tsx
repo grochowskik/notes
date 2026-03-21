@@ -1,8 +1,8 @@
 'use client';
-import { useState, type ReactNode, Fragment } from 'react';
-import { accordionStyles } from './Accordion.styles';
 import { cn } from '@/utils';
 import { ChevronDown } from 'lucide-react';
+import { Fragment, useState, type ReactNode } from 'react';
+import { accordionStyles } from './Accordion.styles';
 
 type AccordionProps = {
   children: ReactNode;

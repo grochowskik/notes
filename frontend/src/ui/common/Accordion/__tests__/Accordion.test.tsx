@@ -1,6 +1,6 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { describe, expect, it, vi } from 'vitest';
 import Accordion from '../Accordion';
 
 describe('Accordion', () => {
@@ -16,7 +16,10 @@ describe('Accordion', () => {
 
   it('has aria-expanded="false" by default', () => {
     render(<Accordion title="Collapsed">Content</Accordion>);
-    expect(screen.getByRole('button')).toHaveAttribute('aria-expanded', 'false');
+    expect(screen.getByRole('button')).toHaveAttribute(
+      'aria-expanded',
+      'false'
+    );
   });
 
   it('toggles aria-expanded to true when button is clicked', async () => {
@@ -33,12 +36,19 @@ describe('Accordion', () => {
 
     await user.click(screen.getByRole('button'));
     await user.click(screen.getByRole('button'));
-    expect(screen.getByRole('button')).toHaveAttribute('aria-expanded', 'false');
+    expect(screen.getByRole('button')).toHaveAttribute(
+      'aria-expanded',
+      'false'
+    );
   });
 
   it('calls the onClick prop when clicked', () => {
     const onClick = vi.fn();
-    render(<Accordion title="With handler" onClick={onClick}>Content</Accordion>);
+    render(
+      <Accordion title="With handler" onClick={onClick}>
+        Content
+      </Accordion>
+    );
     fireEvent.click(screen.getByRole('button'));
     expect(onClick).toHaveBeenCalledTimes(1);
   });

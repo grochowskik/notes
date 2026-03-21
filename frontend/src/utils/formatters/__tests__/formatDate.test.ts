@@ -1,6 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { formatDate, formatDateForInput } from '../formatDate';
-import formatDateRange from '../formatDate';
+import { describe, expect, it } from 'vitest';
+import formatDateRange, { formatDate, formatDateForInput } from '../formatDate';
 
 describe('formatDate', () => {
   it('formats an ISO date string to YYYY-MM-DD HH:mm:ss', () => {
@@ -38,7 +37,7 @@ describe('formatDateForInput', () => {
 describe('formatDateRange', () => {
   it('formats both from and to dates', () => {
     expect(formatDateRange({ from: '2024-01-01', to: '2024-01-31' })).toBe(
-      'From 2024-01-01 to 2024-01-31',
+      'From 2024-01-01 to 2024-01-31'
     );
   });
 

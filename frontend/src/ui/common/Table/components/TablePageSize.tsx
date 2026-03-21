@@ -1,8 +1,8 @@
+import { Icon } from '@/ui';
+import { cn } from '@/utils';
 import { useState } from 'react';
 import Select, { type SingleValue } from 'react-select';
 import { tableStyles } from '../Table.styles';
-import { cn } from '@/utils';
-import { Icon } from '@/ui';
 
 type PageSizeOption = { label: string; value: string };
 
@@ -27,7 +27,7 @@ const TablePageSize = ({ displayedItems, onChange }: TablePageSizeProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<PageSizeOption>(
     pageSizeOptions.find((o) => Number(o.value) === displayedItems) ??
-      pageSizeOptions[1],
+      pageSizeOptions[1]
   );
 
   const handleIconClick = (e: React.MouseEvent) => {

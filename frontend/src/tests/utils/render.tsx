@@ -1,11 +1,11 @@
-import React from 'react';
-import { render, type RenderOptions } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import { ToastContainer } from 'react-toastify';
 import pageParamsReducer from '@/redux/slice/page-params';
 import userReducer from '@/redux/slice/user';
+import { configureStore } from '@reduxjs/toolkit';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render, type RenderOptions } from '@testing-library/react';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
 export function createTestStore() {
   return configureStore({
@@ -40,7 +40,7 @@ function AllProviders({ children }: { children: React.ReactNode }) {
 
 export function renderWithProviders(
   ui: React.ReactElement,
-  options?: Omit<RenderOptions, 'wrapper'>,
+  options?: Omit<RenderOptions, 'wrapper'>
 ) {
   return render(ui, { wrapper: AllProviders, ...options });
 }

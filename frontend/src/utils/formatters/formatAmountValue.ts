@@ -1,7 +1,7 @@
 const formatAmountValue = (
   price?: number | string,
   curr?: string,
-  precision: number = 2,
+  precision: number = 2
 ): string => {
   if (price === null || price === undefined || price === '') {
     return '';

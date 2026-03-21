@@ -1,6 +1,6 @@
+import { cn } from '@/utils';
 import { tableStyles } from '../Table.styles';
 import { TableHeaderProps } from '../Table.type';
-import { cn } from '@/utils';
 
 const TableHeader = ({ children, className, ...props }: TableHeaderProps) => {
   return (

@@ -1,5 +1,5 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { renderHook, act } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { useTablePageSize } from '../useTablePageSize';
 
 describe('useTablePageSize', () => {
@@ -36,7 +36,7 @@ describe('useTablePageSize', () => {
     localStorage.setItem('app.table', JSON.stringify(prefs));
 
     const { result } = renderHook(() =>
-      useTablePageSize('persistent-table', 10),
+      useTablePageSize('persistent-table', 10)
     );
     expect(result.current.pageSize).toBe(75);
   });

@@ -1,7 +1,7 @@
-import { toggleStyles } from './Toggle.styles';
 import { cn } from '@/utils';
 import type { ChangeEventHandler } from 'react';
 import type { UseFormRegisterReturn } from 'react-hook-form';
+import { toggleStyles } from './Toggle.styles';
 
 type ToggleProps = {
   checked: boolean;

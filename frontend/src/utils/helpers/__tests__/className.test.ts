@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { cn } from '../className';
 
 describe('cn', () => {
@@ -25,7 +25,7 @@ describe('cn', () => {
     const isActive = true;
     const isDisabled = false;
     expect(cn(['base', isActive && 'active', isDisabled && 'disabled'])).toBe(
-      'base active',
+      'base active'
     );
   });
 });

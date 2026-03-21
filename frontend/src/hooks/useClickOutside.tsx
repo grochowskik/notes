@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, RefObject } from 'react';
+import { RefObject, useEffect } from 'react';
 
 const useClickOutside = (
   ref: RefObject<HTMLElement | null>,
-  handler: (event: MouseEvent | TouchEvent) => void,
+  handler: (event: MouseEvent | TouchEvent) => void
 ) => {
   useEffect(() => {
     const listener = (event: MouseEvent | TouchEvent) => {

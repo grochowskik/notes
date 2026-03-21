@@ -1,8 +1,8 @@
-import { ReactNode } from 'react';
 import { Accordion, Loader } from '@/ui';
 import { cn } from '@/utils';
-import { detailsStyles } from './Details.styles';
+import { ReactNode } from 'react';
 import DetailsField from '../Fields/DetailsField';
+import { detailsStyles } from './Details.styles';
 
 type DetailsSectionProps = {
   children: ReactNode;

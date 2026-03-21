@@ -1,12 +1,12 @@
 'use client';
 
-import { useForm } from 'react-hook-form';
+import { useCreateNote } from '@/core/api/notes/hooks';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 import {
   noteAddSchema,
   type NoteAddFormValues,
 } from '../schemas/noteAdd.schema';
-import { useCreateNote } from '@/core/api/notes/hooks';
 
 export function useNotesAddForm(onSuccess?: () => void) {
   const { mutate } = useCreateNote();

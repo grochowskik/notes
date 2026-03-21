@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import RequestIdGenerator from '../RequestIdGenerator';
 
 describe('RequestIdGenerator', () => {
@@ -10,7 +10,7 @@ describe('RequestIdGenerator', () => {
 
   it('generates unique IDs on consecutive calls', () => {
     const ids = new Set(
-      Array.from({ length: 100 }, () => RequestIdGenerator.generate()),
+      Array.from({ length: 100 }, () => RequestIdGenerator.generate())
     );
     expect(ids.size).toBe(100);
   });

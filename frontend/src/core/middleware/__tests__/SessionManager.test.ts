@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import SessionManager from '../SessionManager';
 import type { SessionData, StorageAdapter } from '../types';
 
@@ -7,8 +7,12 @@ function makeStorage(): StorageAdapter & { store: Record<string, string> } {
   return {
     store,
     getItem: (key) => store[key] ?? null,
-    setItem: (key, value) => { store[key] = value; },
-    removeItem: (key) => { delete store[key]; },
+    setItem: (key, value) => {
+      store[key] = value;
+    },
+    removeItem: (key) => {
+      delete store[key];
+    },
   };
 }
 
@@ -39,7 +43,10 @@ describe('SessionManager', () => {
     });
 
     it('only stores the three canonical fields (no extra data)', () => {
-      const extended = { ...validSession, extra: 'should-be-ignored' } as SessionData;
+      const extended = {
+        ...validSession,
+        extra: 'should-be-ignored',
+      } as SessionData;
       manager.saveSession(extended);
       const parsed = JSON.parse(storage.getItem('session')!);
       expect(parsed).not.toHaveProperty('extra');
@@ -59,7 +66,9 @@ describe('SessionManager', () => {
 
     it('returns null for corrupt stored data', () => {
       storage.setItem('session', '{ not valid json }');
-      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleSpy = vi
+        .spyOn(console, 'error')
+        .mockImplementation(() => {});
       expect(manager.getSession()).toBeNull();
       consoleSpy.mockRestore();
     });

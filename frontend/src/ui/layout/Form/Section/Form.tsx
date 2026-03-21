@@ -2,22 +2,22 @@
 
 import React from 'react';
 import {
-  FormProvider,
-  UseFormReturn,
   FieldValues,
+  FormProvider,
   SubmitHandler,
+  UseFormReturn,
 } from 'react-hook-form';
 
-import { formStyles } from './Form.styles';
-import { cn } from '@/utils';
 import {
   AmountInput,
   FormDropdown,
-  FormPhoneNumber,
-  Input,
   FormOtp,
+  FormPhoneNumber,
   FormSubmitButton,
+  Input,
 } from '@/ui';
+import { cn } from '@/utils';
+import { formStyles } from './Form.styles';
 
 interface FormProps<T extends FieldValues> {
   methods: UseFormReturn<T>;

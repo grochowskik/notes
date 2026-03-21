@@ -1,13 +1,13 @@
 import {
-  useQuery,
-  UseQueryResult,
   useMutation,
-  useQueryClient,
   UseMutationResult,
+  useQuery,
+  useQueryClient,
+  UseQueryResult,
 } from '@tanstack/react-query';
 import ErrorClassifier from './ErrorClassifier';
-import { ApiResponse } from './types';
 import { getRequestClass } from './requestInstance';
+import { ApiResponse } from './types';
 
 const CACHE_TIME = 5 * 60 * 1000;
 
@@ -34,12 +34,14 @@ type HttpMutationMethod = 'post' | 'put' | 'patch' | 'delete';
 export function useGet<TData = unknown, TParams = unknown>(
   url: string,
   params?: TParams,
-  options: ApiQueryOptions = {},
+  options: ApiQueryOptions = {}
 ): UseQueryResult<TData, Error> {
   return useQuery<TData, Error>({
     queryKey: [url, params],
     queryFn: async (): Promise<TData> => {
-      const response = await getRequestClass().get<ApiResponse<TData>>(url, { params });
+      const response = await getRequestClass().get<ApiResponse<TData>>(url, {
+        params,
+      });
       return response.data.result as TData;
     },
     staleTime: CACHE_TIME,
@@ -56,7 +58,7 @@ export function useGet<TData = unknown, TParams = unknown>(
 function useMutationByMethod<TRequest = unknown, TResponse = unknown>(
   method: HttpMutationMethod,
   url: string,
-  options: ApiMutationOptions<TRequest, TResponse> = {},
+  options: ApiMutationOptions<TRequest, TResponse> = {}
 ): ApiMutationResult<TRequest, TResponse> {
   const queryClient = useQueryClient();
   const { invalidateQueriesList, onSuccess, onError } = options;
@@ -64,15 +66,19 @@ function useMutationByMethod<TRequest = unknown, TResponse = unknown>(
   const mutation = useMutation<TResponse, Error, TRequest>({
     mutationFn: async (params: TRequest): Promise<TResponse> => {
       const rc = getRequestClass();
-      const response = method === 'delete'
-        ? await rc.delete<ApiResponse<TResponse>>(url, { data: params })
-        : await (rc[method] as typeof rc.post)<ApiResponse<TResponse>>(url, params);
+      const response =
+        method === 'delete'
+          ? await rc.delete<ApiResponse<TResponse>>(url, { data: params })
+          : await (rc[method] as typeof rc.post)<ApiResponse<TResponse>>(
+              url,
+              params
+            );
       return response.data.result as TResponse;
     },
     onSuccess: (data, variables) => {
       if (invalidateQueriesList) {
         invalidateQueriesList.forEach((key) =>
-          queryClient.invalidateQueries({ queryKey: [key] }),
+          queryClient.invalidateQueries({ queryKey: [key] })
         );
       }
       onSuccess?.(data, variables);
@@ -93,28 +99,28 @@ function useMutationByMethod<TRequest = unknown, TResponse = unknown>(
 
 export function usePost<TRequest = unknown, TResponse = unknown>(
   url: string,
-  options: ApiMutationOptions<TRequest, TResponse> = {},
+  options: ApiMutationOptions<TRequest, TResponse> = {}
 ): ApiMutationResult<TRequest, TResponse> {
   return useMutationByMethod<TRequest, TResponse>('post', url, options);
 }
 
 export function usePut<TRequest = unknown, TResponse = unknown>(
   url: string,
-  options: ApiMutationOptions<TRequest, TResponse> = {},
+  options: ApiMutationOptions<TRequest, TResponse> = {}
 ): ApiMutationResult<TRequest, TResponse> {
   return useMutationByMethod<TRequest, TResponse>('put', url, options);
 }
 
 export function usePatch<TRequest = unknown, TResponse = unknown>(
   url: string,
-  options: ApiMutationOptions<TRequest, TResponse> = {},
+  options: ApiMutationOptions<TRequest, TResponse> = {}
 ): ApiMutationResult<TRequest, TResponse> {
   return useMutationByMethod<TRequest, TResponse>('patch', url, options);
 }
 
 export function useDelete<TRequest = unknown, TResponse = unknown>(
   url: string,
-  options: ApiMutationOptions<TRequest, TResponse> = {},
+  options: ApiMutationOptions<TRequest, TResponse> = {}
 ): ApiMutationResult<TRequest, TResponse> {
   return useMutationByMethod<TRequest, TResponse>('delete', url, options);
 }

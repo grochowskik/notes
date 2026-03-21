@@ -1,6 +1,6 @@
 import { Icon } from '@/ui';
-import { modalStyles } from '../Modal.styles';
 import { useModalContext } from '../Modal';
+import { modalStyles } from '../Modal.styles';
 
 interface ModalHeaderProps {
   title?: string;

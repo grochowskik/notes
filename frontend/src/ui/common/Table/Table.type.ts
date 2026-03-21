@@ -1,4 +1,4 @@
-import { ReactNode, HTMLAttributes } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
 export interface TableProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;

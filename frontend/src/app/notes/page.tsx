@@ -1,8 +1,8 @@
 'use client';
 
-import { Page } from '@/ui';
 import { RouteGuard } from '@/core';
 import { NotesSection } from '@/features/notes';
+import { Page } from '@/ui';
 
 export default function DashboardPage() {
   return (

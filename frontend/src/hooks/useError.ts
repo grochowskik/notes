@@ -1,9 +1,9 @@
 'use client';
 
+import type { AxiosError } from 'axios';
+import { isAxiosError } from 'axios';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { isAxiosError } from 'axios';
-import type { AxiosError } from 'axios';
 
 type ErrorType = AxiosError | null | Error | { message: string };
 

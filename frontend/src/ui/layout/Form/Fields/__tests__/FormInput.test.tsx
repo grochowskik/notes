@@ -1,7 +1,7 @@
-import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { useForm, FormProvider } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
+import { describe, expect, it, vi } from 'vitest';
 import FormInput from '../FormInput';
 
 function Wrapper({
@@ -38,7 +38,7 @@ describe('FormInput', () => {
     expect(input).toHaveAttribute('id', 'email');
     expect(screen.getByText('Email').closest('label')).toHaveAttribute(
       'for',
-      'email',
+      'email'
     );
   });
 
@@ -54,14 +54,14 @@ describe('FormInput', () => {
     render(<Wrapper name="email" label="Email" />);
     expect(screen.getByRole('textbox')).toHaveAttribute(
       'aria-invalid',
-      'false',
+      'false'
     );
   });
 
   it('throws if used outside a FormProvider', () => {
     const spy = vi.spyOn(console, 'error').mockImplementation(() => {});
     expect(() => render(<FormInput name="test" label="Test" />)).toThrow(
-      'FormInput must be used within a Form component',
+      'FormInput must be used within a Form component'
     );
     spy.mockRestore();
   });

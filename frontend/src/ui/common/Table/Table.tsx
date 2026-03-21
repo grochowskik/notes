@@ -9,10 +9,10 @@ import {
   TableSkeleton,
 } from '@/ui';
 import { tableStyles } from './Table.styles';
-import { TableProps, TableHeaderProps, TableBodyProps } from './Table.type';
+import { TableBodyProps, TableHeaderProps, TableProps } from './Table.type';
 
 import { cn } from '@/utils';
-import { Children, isValidElement, cloneElement } from 'react';
+import { Children, cloneElement, isValidElement } from 'react';
 
 function TableRoot({
   children,
@@ -32,7 +32,7 @@ function TableRoot({
         Children.forEach(child.props.children, (row) => {
           if (isValidElement(row) && row.type === TableRow) {
             columnCount = Children.count(
-              (row.props as { children?: React.ReactNode }).children,
+              (row.props as { children?: React.ReactNode }).children
             );
           }
         });

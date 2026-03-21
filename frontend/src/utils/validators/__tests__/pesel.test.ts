@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import validatePesel from '../pesel';
 
 const VALID_PESEL = '44051401458';

@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import validateBankAccountNumber from '../accountNumber';
 
 const VALID_NRB = '61109010140000071219812874';
@@ -25,7 +25,7 @@ describe('validateBankAccountNumber', () => {
   it('rejects an NRB that is not 26 digits', () => {
     expect(validateBankAccountNumber('1234567890')).toBe(false);
     expect(validateBankAccountNumber('123456789012345678901234567')).toBe(
-      false,
+      false
     );
   });
 

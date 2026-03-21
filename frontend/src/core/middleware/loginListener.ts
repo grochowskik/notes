@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios';
 
-import { store } from '@/redux/store';
-import { setLoggedIn, setLifetime, setTimestamp } from '@/redux/slice/user';
 import { toastNotification } from '@/hooks';
+import { setLifetime, setLoggedIn, setTimestamp } from '@/redux/slice/user';
+import { store } from '@/redux/store';
 import type { SessionData } from './types';
 
 interface ErrorData {
@@ -33,7 +33,7 @@ const setAuthCookie = (value: boolean) => {
 };
 
 const loginListener = <T = unknown>(
-  response: AxiosResponse<ResponseData & T>,
+  response: AxiosResponse<ResponseData & T>
 ): AxiosResponse<ResponseData & T> => {
   const { is_user_logged_in: loggedIn, lifetime } =
     response?.data?.session ?? {};

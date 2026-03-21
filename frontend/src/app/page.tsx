@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from '@/ui';
 import { useRedirect } from '@/hooks';
+import { Button } from '@/ui';
 
 export default function Home() {
   const { redirect } = useRedirect();

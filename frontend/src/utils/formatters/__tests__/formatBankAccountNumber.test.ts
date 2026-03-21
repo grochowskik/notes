@@ -1,10 +1,10 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import formatBankAccountNumber from '../formatBankAccountNumber';
 
 describe('formatBankAccountNumber', () => {
   it('formats a 26-digit NRB into XX XXXX XXXX XXXX XXXX XXXX XX groups', () => {
     expect(formatBankAccountNumber('61109010140000071219812874')).toBe(
-      '61 1090 1014 0000 0712 1981 2874',
+      '61 1090 1014 0000 0712 1981 2874'
     );
   });
 

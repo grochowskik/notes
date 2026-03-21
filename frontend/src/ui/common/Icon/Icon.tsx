@@ -1,8 +1,9 @@
+import { cn } from '@/utils';
 import type { LucideProps } from 'lucide-react';
 import {
+  ChevronDown,
   Circle,
   CircleDot,
-  ChevronDown,
   Eye,
   EyeOff,
   Filter,
@@ -12,7 +13,6 @@ import {
   MoreHorizontal,
   X,
 } from 'lucide-react';
-import { cn } from '@/utils';
 import { iconStyles } from './Icon.styles';
 
 export type IconName =

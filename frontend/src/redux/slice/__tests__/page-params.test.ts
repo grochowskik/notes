@@ -1,12 +1,12 @@
-import { describe, it, expect } from 'vitest';
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { configureStore } from '@reduxjs/toolkit';
+import { describe, expect, it } from 'vitest';
 import pageParamsReducer, {
-  pushPage,
   popPage,
   previousPage,
+  pushPage,
   type PageParams,
 } from '../page-params';
-import type { PayloadAction } from '@reduxjs/toolkit';
 
 const initialState = { stack: [] };
 
@@ -20,7 +20,7 @@ describe('pageParams slice', () => {
   describe('initial state', () => {
     it('has an empty stack', () => {
       expect(
-        pageParamsReducer(undefined, { type: '@@INIT' } as PayloadAction),
+        pageParamsReducer(undefined, { type: '@@INIT' } as PayloadAction)
       ).toEqual(initialState);
     });
   });

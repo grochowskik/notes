@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 import Modal from '../Modal';
 
 describe('Modal', () => {
@@ -7,7 +7,7 @@ describe('Modal', () => {
     render(
       <Modal show={false} onClose={vi.fn()}>
         <p>Hidden content</p>
-      </Modal>,
+      </Modal>
     );
     expect(screen.queryByText('Hidden content')).not.toBeInTheDocument();
   });
@@ -16,7 +16,7 @@ describe('Modal', () => {
     render(
       <Modal show={true} onClose={vi.fn()}>
         <p>Visible content</p>
-      </Modal>,
+      </Modal>
     );
     expect(screen.getByText('Visible content')).toBeInTheDocument();
   });
@@ -25,7 +25,7 @@ describe('Modal', () => {
     render(
       <Modal show={true} onClose={vi.fn()}>
         <p>Content</p>
-      </Modal>,
+      </Modal>
     );
     expect(screen.getByRole('dialog')).toBeInTheDocument();
   });
@@ -34,7 +34,7 @@ describe('Modal', () => {
     render(
       <Modal show={true} onClose={vi.fn()}>
         <p>Content</p>
-      </Modal>,
+      </Modal>
     );
     expect(screen.getByRole('dialog')).toHaveAttribute('aria-modal', 'true');
   });
@@ -44,7 +44,7 @@ describe('Modal', () => {
     render(
       <Modal show={true} onClose={onClose}>
         <p>Content</p>
-      </Modal>,
+      </Modal>
     );
     fireEvent.keyDown(document, { key: 'Escape' });
     expect(onClose).toHaveBeenCalledTimes(1);
@@ -55,7 +55,7 @@ describe('Modal', () => {
     render(
       <Modal show={true} onClose={onClose}>
         <p>Content</p>
-      </Modal>,
+      </Modal>
     );
     fireEvent.keyDown(document, { key: 'Enter' });
     expect(onClose).not.toHaveBeenCalled();
@@ -65,7 +65,7 @@ describe('Modal', () => {
     render(
       <Modal show={true} loading={true} onClose={vi.fn()}>
         <p>Should not appear</p>
-      </Modal>,
+      </Modal>
     );
     expect(screen.queryByText('Should not appear')).not.toBeInTheDocument();
     expect(screen.getByRole('dialog')).toBeInTheDocument();
@@ -75,7 +75,7 @@ describe('Modal', () => {
     render(
       <Modal show={true} role="alertdialog" onClose={vi.fn()}>
         <p>Content</p>
-      </Modal>,
+      </Modal>
     );
     expect(screen.getByRole('alertdialog')).toBeInTheDocument();
   });

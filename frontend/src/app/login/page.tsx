@@ -1,7 +1,7 @@
 'use client';
 
-import { Page } from '@/ui';
 import { LoginForm } from '@/features/auth';
+import { Page } from '@/ui';
 
 export default function LoginPage() {
   return (

@@ -1,9 +1,9 @@
 'use client';
 
-import { useRouter, usePathname } from 'next/navigation';
+import { cn } from '@/utils';
+import { usePathname, useRouter } from 'next/navigation';
 import type { MouseEvent } from 'react';
 import { styles } from './Tabs.styles';
-import { cn } from '@/utils';
 
 type TabsProps = {
   activeTab: string;

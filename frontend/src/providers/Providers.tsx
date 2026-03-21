@@ -1,11 +1,11 @@
 'use client';
 
+import '@/lib/i18n';
+import { Loader } from '@/ui';
+import { Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { QueryProvider } from './QueryProvider';
 import { ReduxProvider } from './ReduxProvider';
-import { Suspense } from 'react';
-import { Loader } from '@/ui';
-import '@/lib/i18n';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (

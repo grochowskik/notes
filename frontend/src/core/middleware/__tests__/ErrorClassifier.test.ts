@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
 import axios from 'axios';
+import { describe, expect, it } from 'vitest';
 import ErrorClassifier from '../ErrorClassifier';
 import { ErrorType } from '../types';
 
@@ -36,7 +36,7 @@ describe('ErrorClassifier.classify', () => {
 
   it('classifies ECONNABORTED as TIMEOUT with retry', () => {
     const result = ErrorClassifier.classify(
-      makeAxiosError({ code: 'ECONNABORTED' }),
+      makeAxiosError({ code: 'ECONNABORTED' })
     );
     expect(result.type).toBe(ErrorType.TIMEOUT);
     expect(result.shouldRetry).toBe(true);
@@ -44,7 +44,7 @@ describe('ErrorClassifier.classify', () => {
 
   it('classifies ETIMEDOUT as TIMEOUT with retry', () => {
     const result = ErrorClassifier.classify(
-      makeAxiosError({ code: 'ETIMEDOUT' }),
+      makeAxiosError({ code: 'ETIMEDOUT' })
     );
     expect(result.type).toBe(ErrorType.TIMEOUT);
     expect(result.shouldRetry).toBe(true);
@@ -58,33 +58,33 @@ describe('ErrorClassifier.classify', () => {
 
   it('classifies 5xx as SERVER with retry', () => {
     const result = ErrorClassifier.classify(
-      makeAxiosError({ responseStatus: 500 }),
+      makeAxiosError({ responseStatus: 500 })
     );
     expect(result.type).toBe(ErrorType.SERVER);
     expect(result.shouldRetry).toBe(true);
 
     const result503 = ErrorClassifier.classify(
-      makeAxiosError({ responseStatus: 503 }),
+      makeAxiosError({ responseStatus: 503 })
     );
     expect(result503.type).toBe(ErrorType.SERVER);
   });
 
   it('classifies 4xx (non-408/429) as CLIENT without retry', () => {
     const result = ErrorClassifier.classify(
-      makeAxiosError({ responseStatus: 400 }),
+      makeAxiosError({ responseStatus: 400 })
     );
     expect(result.type).toBe(ErrorType.CLIENT);
     expect(result.shouldRetry).toBe(false);
 
     const result404 = ErrorClassifier.classify(
-      makeAxiosError({ responseStatus: 404 }),
+      makeAxiosError({ responseStatus: 404 })
     );
     expect(result404.shouldRetry).toBe(false);
   });
 
   it('classifies 408 as CLIENT with retry', () => {
     const result = ErrorClassifier.classify(
-      makeAxiosError({ responseStatus: 408 }),
+      makeAxiosError({ responseStatus: 408 })
     );
     expect(result.type).toBe(ErrorType.CLIENT);
     expect(result.shouldRetry).toBe(true);
@@ -95,7 +95,7 @@ describe('ErrorClassifier.classify', () => {
       makeAxiosError({
         responseStatus: 429,
         responseHeaders: { 'retry-after': '30' },
-      }),
+      })
     );
     expect(result.type).toBe(ErrorType.CLIENT);
     expect(result.shouldRetry).toBe(true);
@@ -104,7 +104,7 @@ describe('ErrorClassifier.classify', () => {
 
   it('returns undefined retryAfter when Retry-After header is absent', () => {
     const result = ErrorClassifier.classify(
-      makeAxiosError({ responseStatus: 429 }),
+      makeAxiosError({ responseStatus: 429 })
     );
     expect(result.retryAfter).toBeUndefined();
   });

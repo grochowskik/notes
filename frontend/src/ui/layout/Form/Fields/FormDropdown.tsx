@@ -1,10 +1,10 @@
 'use client';
 
-import { memo } from 'react';
-import { useFormContext, useController } from 'react-hook-form';
 import { Dropdown, type DropdownOption } from '@/ui';
-import { formStyles } from './FormInput.styles';
 import { cn } from '@/utils';
+import { memo } from 'react';
+import { useController, useFormContext } from 'react-hook-form';
+import { formStyles } from './FormInput.styles';
 
 interface FormDropdownProps {
   name: string;

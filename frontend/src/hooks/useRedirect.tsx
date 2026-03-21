@@ -1,14 +1,14 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   PageParams,
-  pushPage,
   popPage,
   previousPage,
+  pushPage,
 } from '@/redux/slice/page-params';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const useHandleBackNavigation = () => {
   const dispatch = useDispatch();

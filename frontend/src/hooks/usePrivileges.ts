@@ -1,12 +1,12 @@
-import { useSelector } from 'react-redux';
 import {
-  selectUserRole,
-  selectPermissions,
-  selectIsLoggedIn,
   selectHasPermission,
-  type UserRole,
+  selectIsLoggedIn,
+  selectPermissions,
+  selectUserRole,
   type Permission,
+  type UserRole,
 } from '@/redux/slice/user';
+import { useSelector } from 'react-redux';
 
 export function usePrivileges() {
   const role = useSelector(selectUserRole);
@@ -32,7 +32,15 @@ export function usePrivileges() {
     return required.every((p) => permissions.includes(p));
   }
 
-  return { role, permissions, isLoggedIn, hasPermission, hasRole, hasAnyPermission, hasAllPermissions };
+  return {
+    role,
+    permissions,
+    isLoggedIn,
+    hasPermission,
+    hasRole,
+    hasAnyPermission,
+    hasAllPermissions,
+  };
 }
 
 export { selectHasPermission };
