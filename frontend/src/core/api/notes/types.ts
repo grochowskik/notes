@@ -19,11 +19,8 @@ export interface NoteListResponse {
 }
 
 export interface CreateNoteRequest {
-  amount: number;
-  currency: string;
-  description?: string;
-  recipientId?: string;
-  metadata?: Record<string, unknown>;
+  title: string;
+  content: string;
 }
 
 export interface UpdateNoteRequest {
