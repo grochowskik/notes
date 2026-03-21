@@ -65,3 +65,10 @@ export interface ClassifiedError {
   shouldRetry: boolean;
   retryAfter?: number;
 }
+
+export interface Pagination {
+  page: number;
+  page_size: number;
+  total_records: number;
+  total_pages: number;
+}

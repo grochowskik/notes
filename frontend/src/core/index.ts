@@ -9,3 +9,5 @@ export {
   usePatch,
   useDelete,
 } from './middleware/useApi';
+
+export { type Pagination } from './middleware/types';
