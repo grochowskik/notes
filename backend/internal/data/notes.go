@@ -28,8 +28,8 @@ func ValidateNote(v *validator.Validator, note *Note) {
 	v.Check(len(note.Content) <= 5000, "content", "must not be more than 5000 bytes long")
 }
 
-func (m NoteModel) GetAll() ([]*Note, error) {
-	rows, err := m.DB.Query("SELECT id, created_at, title, content, version FROM notes")
+func (n NoteModel) GetAll() ([]*Note, error) {
+	rows, err := n.DB.Query("SELECT id, created_at, title, content, version FROM notes")
 	if err != nil {
 		return nil, err
 	}
@@ -53,8 +53,28 @@ func (m NoteModel) GetAll() ([]*Note, error) {
 	return notes, nil
 }
 
-func (m NoteModel) Insert(note *Note) error {
+func (n NoteModel) Insert(note *Note) error {
 	query := "INSERT INTO notes  (title, content) VALUES ($1, $2) RETURNING id, created_at, version"
 
-	return m.DB.QueryRow(query, note.Title, note.Content).Scan(&note.ID, &note.CreatedAt, &note.Version)
+	return n.DB.QueryRow(query, note.Title, note.Content).Scan(&note.ID, &note.CreatedAt, &note.Version)
+}
+
+func (n NoteModel) Delete(id uuid.UUID) error {
+	query := "DELETE FROM notes WHERE id = $1"
+
+	result, err := n.DB.Exec(query, id)
+	if err != nil {
+		return err
+	}
+
+	rowsAffected, err := result.RowsAffected()
+	if err != nil {
+		return err
+	}
+
+	if rowsAffected == 0 {
+		return ErrRecordNotFound
+	}
+
+	return nil
 }

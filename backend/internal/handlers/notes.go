@@ -1,11 +1,14 @@
 package handlers
 
 import (
+	"errors"
 	"fmt"
 	"net/http"
 	"notes/internal/api"
 	"notes/internal/data"
 	"notes/internal/validator"
+
+	"github.com/google/uuid"
 )
 
 func (h *Handlers) ShowNotesHandler(w http.ResponseWriter, r *http.Request) {
@@ -60,5 +63,34 @@ func (h *Handlers) CreateNoteHandler(w http.ResponseWriter, r *http.Request) {
 		h.ServerError(w, r, err)
 		return
 	}
+}
 
+func (h *Handlers) DeleteNoteHandler(w http.ResponseWriter, r *http.Request) {
+	var input struct {
+		ID uuid.UUID `json:"id"`
+	}
+
+	err := api.ReadJSON(w, r, &input)
+
+	if err != nil {
+		h.BadRequest(w, r, err)
+		return
+	}
+
+	err = h.Models.Notes.Delete(input.ID)
+	if err != nil {
+		switch {
+		case errors.Is(err, data.ErrRecordNotFound):
+			h.NotFound(w, r)
+		default:
+			h.ServerError(w, r, err)
+		}
+		return
+	}
+
+	err = api.WriteJSON(w, http.StatusOK, api.Envelope{"message": "Note deleted successfully"}, nil)
+	if err != nil {
+		h.ServerError(w, r, err)
+		return
+	}
 }

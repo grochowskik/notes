@@ -14,6 +14,7 @@ func (app *application) routes() http.Handler {
 
 	router.HandlerFunc(http.MethodGet, "/notes_list", app.handlers.ShowNotesHandler)
 	router.HandlerFunc(http.MethodPost, "/notes_create", app.handlers.CreateNoteHandler)
+	router.HandlerFunc(http.MethodDelete, "/notes_delete", app.handlers.DeleteNoteHandler)
 
 	return app.recoverPanic(router)
 }
