@@ -16,7 +16,6 @@ export const modalStyles = {
   header: {
     base: 'flex items-center justify-between p-6 border-b border-border',
     title: 'text-lg font-semibold text-text-default flex-1',
-    closeIcon: 'cursor-pointer p-0 hover:scale-110',
     closeButton:
       'ml-4 p-2 text-text-subtle hover:text-text-muted hover:bg-surface-hover rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-accent',
   },

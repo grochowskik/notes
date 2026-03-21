@@ -1,6 +1,6 @@
 import { Icon } from '@/ui';
-import { useModalContext } from '../Modal';
 import { modalStyles } from '../Modal.styles';
+import { useModalContext } from '../ModalContext';
 
 interface ModalHeaderProps {
   title?: string;
@@ -13,13 +13,7 @@ const ModalHeader: React.FC<ModalHeaderProps> = ({ title }) => {
   return (
     <div className={header.base}>
       <div className={header.title}>{title}</div>
-      <Icon
-        name="cross"
-        onClick={onClose}
-        height={24}
-        width={24}
-        className={header.closeIcon}
-      />
+      <Icon name="cross" onClick={onClose} height={24} width={24} />
     </div>
   );
 };

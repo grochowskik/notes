@@ -11,6 +11,7 @@ import {
   Info,
   Loader2,
   MoreHorizontal,
+  Trash,
   X,
 } from 'lucide-react';
 import { iconStyles } from './Icon.styles';
@@ -26,6 +27,7 @@ export type IconName =
   | 'eye-off'
   | 'filter'
   | 'globe'
+  | 'trash'
   | 'more';
 
 const iconMap: Record<IconName, React.FC<LucideProps>> = {
@@ -39,6 +41,7 @@ const iconMap: Record<IconName, React.FC<LucideProps>> = {
   'eye-off': EyeOff,
   filter: Filter,
   globe: Globe,
+  trash: Trash,
   more: MoreHorizontal,
 };
 
@@ -47,12 +50,19 @@ type IconProps = LucideProps & {
   pointer?: boolean;
 };
 
-const Icon = ({ name, pointer = false, className, ...props }: IconProps) => {
+const Icon = ({
+  name,
+  pointer = false,
+  className,
+  onClick,
+  ...props
+}: IconProps) => {
   const { base, point } = iconStyles;
   const LucideIcon = iconMap[name];
   return (
     <LucideIcon
-      className={cn([base, className, pointer && point])}
+      className={cn([base, className, (pointer || onClick) && point])}
+      onClick={onClick}
       {...props}
     />
   );

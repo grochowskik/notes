@@ -1,7 +1,7 @@
 import { useDelete, useGet, usePatch, usePost } from '@/core';
 import {
-  CancelNoteRequest,
   CreateNoteRequest,
+  DeleteNoteRequest,
   Note,
   NoteListRequest,
   NoteListResponse,
@@ -16,20 +16,20 @@ export const useNotesList = (params?: NoteListRequest) => {
   return useGet<NoteListResponse>('/notes_list', params);
 };
 
-export const useCreateNote = () => {
+export const useNoteCreate = () => {
   return usePost<CreateNoteRequest, Note>('/notes_create', {
     invalidateQueriesList: ['/notes_list'],
   });
 };
 
-export const useUpdateNote = () => {
+export const useNoteUpdate = () => {
   return usePatch<UpdateNoteRequest, Note>('/notes_update', {
     invalidateQueriesList: ['/notes_list', '/note'],
   });
 };
 
-export const useCancelNote = () => {
-  return useDelete<CancelNoteRequest, Note>('/notes_cancel', {
+export const useNoteDelete = () => {
+  return useDelete<DeleteNoteRequest, Note>('/notes_delete', {
     invalidateQueriesList: ['/notes_list', '/note'],
   });
 };

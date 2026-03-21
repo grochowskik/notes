@@ -1,15 +1,12 @@
 'use client';
 
-import { useCreateNote } from '@/core/api/notes/hooks';
+import { useNoteCreate } from '@/core/api/notes/hooks';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import {
-  noteAddSchema,
-  type NoteAddFormValues,
-} from '../schemas/noteAdd.schema';
+import { noteAddSchema, type NoteAddFormValues } from '../schemas/note.schema';
 
 export function useNotesAddForm(onSuccess?: () => void) {
-  const { mutate } = useCreateNote();
+  const { mutate } = useNoteCreate();
 
   const methods = useForm<NoteAddFormValues>({
     resolver: zodResolver(noteAddSchema),
@@ -23,8 +20,10 @@ export function useNotesAddForm(onSuccess?: () => void) {
 
   const onSubmit = async (data: NoteAddFormValues) => {
     await mutate({ title: data.title, content: data.content });
+    methods.reset();
     onSuccess?.();
   };
 
   return { methods, onSubmit };
 }
+

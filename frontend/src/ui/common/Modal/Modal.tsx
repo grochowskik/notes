@@ -3,22 +3,12 @@
 import { useEscapeKey } from '@/hooks';
 import { LoaderIcon, ModalBody, ModalFooter, ModalHeader } from '@/ui';
 import { cn } from '@/utils';
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  type ReactNode,
-} from 'react';
+import React, { useCallback, useContext, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { modalStyles } from './Modal.styles';
+import { ModalContext } from './ModalContext';
 
 const { overlay, backdrop, container } = modalStyles;
-
-interface ModalContextValue {
-  onClose?: () => void;
-}
-
-const ModalContext = createContext<ModalContextValue>({});
 
 export const useModalContext = () => {
   const context = useContext(ModalContext);

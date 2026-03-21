@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, Form, Modal } from '@/ui';
-import { useNotesAddForm } from '../hooks/useNotesAddForm';
+import { useNotesAddForm } from '../hooks/useNotesForm';
 
 export function NotesAddModal({
   show,

@@ -24,11 +24,11 @@ export interface CreateNoteRequest {
 }
 
 export interface UpdateNoteRequest {
-  noteId: string;
+  id: string;
   description?: string;
   metadata?: Record<string, unknown>;
 }
 
-export interface CancelNoteRequest {
-  noteId: string;
+export interface DeleteNoteRequest {
+  id: string;
 }
