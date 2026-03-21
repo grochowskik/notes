@@ -48,24 +48,21 @@ func ValidateFilters(v *validator.Validator, f Filters) {
 }
 
 type Pagination struct {
-	CurrentPage  int `json:"current_page,omitzero"`
-	PageSize     int `json:"page_size,omitzero"`
-	FirstPage    int `json:"first_page,omitzero"`
-	LastPage     int `json:"last_page,omitzero"`
-	TotalRecords int `json:"total_records,omitzero"`
+	Page         int `json:"page"`
+	PageSize     int `json:"page_size"`
+	TotalRecords int `json:"total_records"`
+	TotalPages   int `json:"total_pages"`
 }
 
-func calculatePagination(totalRecords, page, pageSize int) Pagination {
+func CalculatePagination(totalRecords, page, pageSize int) Pagination {
 	if totalRecords == 0 {
-
 		return Pagination{}
 	}
 
 	return Pagination{
-		CurrentPage:  page,
+		Page:         page,
 		PageSize:     pageSize,
-		FirstPage:    1,
-		LastPage:     (totalRecords + pageSize - 1) / pageSize,
 		TotalRecords: totalRecords,
+		TotalPages:   (totalRecords + pageSize - 1) / pageSize,
 	}
 }

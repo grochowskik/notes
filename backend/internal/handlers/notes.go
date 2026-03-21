@@ -3,6 +3,7 @@ package handlers
 import (
 	"net/http"
 	"notes/internal/api"
+	"notes/internal/data"
 )
 
 func (h *Handlers) ShowNotesHandler(w http.ResponseWriter, r *http.Request) {
@@ -12,12 +13,7 @@ func (h *Handlers) ShowNotesHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	pagination := api.Pagination{
-		Page:         1,
-		PageSize:     10,
-		TotalRecords: len(notes),
-		TotalPages:   1,
-	}
+	pagination := data.CalculatePagination(len(notes), 1, 10)
 
 	api.WriteJSON(w, http.StatusOK, api.Envelope{"notes": notes, "pagination": pagination}, nil)
 }

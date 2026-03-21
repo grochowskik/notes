@@ -14,13 +14,6 @@ import (
 
 type Envelope map[string]any
 
-type Pagination struct {
-	Page         int `json:"page"`
-	PageSize     int `json:"page_size"`
-	TotalRecords int `json:"total_records"`
-	TotalPages   int `json:"total_pages"`
-}
-
 type Response struct {
 	Result  Envelope `json:"result,omitempty"`
 	Session any      `json:"session,omitempty"`
