@@ -11,7 +11,6 @@ import ErrorClassifier from './ErrorClassifier';
 import {
   RequestClassConfig,
   ApiResponse,
-  ExtendedRequestData,
   RequestMetadata,
   InterceptorName,
   InterceptorConfig,
@@ -59,9 +58,9 @@ export class RequestClass {
         const startTime = Date.now();
         const session = this.sessionManager.getSession();
 
-        const data: ExtendedRequestData = config.data || {};
-        data.session = session;
-        config.data = data;
+        if (session?.sid) {
+          config.headers['Authorization'] = `Bearer ${session.sid}`;
+        }
 
         if (this.config.enableRequestId) {
           const requestId = RequestIdGenerator.generate();
