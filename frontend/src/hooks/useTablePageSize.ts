@@ -25,10 +25,12 @@ function setPreferences(prefs: Storage) {
 }
 
 function readPageSize(tableId: string): number | undefined {
+  if (!tableId) return undefined;
   return getPreferences().tables[tableId]?.pageSize;
 }
 
 function writePageSize(tableId: string, size: number) {
+  if (!tableId) return;
   const prefs = getPreferences();
   prefs.tables[tableId] = { ...prefs.tables[tableId], pageSize: size };
   setPreferences(prefs);

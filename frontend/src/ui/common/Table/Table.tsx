@@ -1,3 +1,5 @@
+'use client';
+
 import {
   TableBody,
   TableBodyCell,
@@ -23,6 +25,7 @@ function TableRoot({
   totalPages,
   pageSize,
   onPageChange,
+  onPageSizeChange,
   ...props
 }: TableProps) {
   const getColumnCount = (): number => {
@@ -70,8 +73,9 @@ function TableRoot({
           <TablePagination
             currentPage={currentPage}
             totalPages={totalPages}
-            itemsPerPage={pageSize}
+            pageSize={pageSize}
             onPageChange={onPageChange}
+            onPageSizeChange={onPageSizeChange}
           />
         )}
     </div>

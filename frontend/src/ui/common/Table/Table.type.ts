@@ -9,6 +9,7 @@ export interface TableProps extends HTMLAttributes<HTMLDivElement> {
   totalPages?: number;
   pageSize?: number;
   onPageChange?: (page: number) => void;
+  onPageSizeChange?: (size: number) => void;
 }
 
 export interface TableHeaderProps extends HTMLAttributes<HTMLTableSectionElement> {
@@ -51,7 +52,8 @@ export interface TablePaginationProps {
   currentPage: number;
   totalPages: number;
   totalItems?: number;
-  itemsPerPage?: number;
+  pageSize?: number;
   onPageChange: (page: number) => void;
+  onPageSizeChange?: (size: number) => void;
   showInfo?: boolean;
 }

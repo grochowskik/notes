@@ -39,12 +39,8 @@ export const tableStyles = {
     ellipsis: 'px-2 text-text-subtle',
   },
 
-  tablePageSize: {
-    icon: 'flex cursor-pointer p-1',
-    iconExpanded: 'rotate-180 transition-transform duration-[0.25s]',
-    iconCollapsed: 'transition-transform duration-[0.25s]',
-    menu: 'absolute right-[5px] z-10 rounded-lg border border-border bg-surface px-2',
-  },
+  tablePageSize:
+    'px-2 py-1.5 text-sm border border-border rounded bg-surface text-text-default cursor-pointer hover:bg-surface-hover transition-colors [&>option]:bg-surface [&>option]:hover:bg-surface',
 } as const;
 
 export type TableStyles = typeof tableStyles;

@@ -1,3 +1,4 @@
+import { TablePageSize } from '@/ui';
 import { cn } from '@/utils';
 import { tableStyles } from '../Table.styles';
 import { TablePaginationProps } from '../Table.type';
@@ -6,8 +7,9 @@ const TablePagination = ({
   currentPage,
   totalPages,
   totalItems,
-  itemsPerPage,
+  pageSize,
   onPageChange,
+  onPageSizeChange,
   showInfo = true,
 }: TablePaginationProps) => {
   const getPageNumbers = () => {
@@ -55,10 +57,10 @@ const TablePagination = ({
   };
 
   const renderPageInfo = () => {
-    if (!showInfo || !totalItems || !itemsPerPage) return null;
+    if (!showInfo || !totalItems || !pageSize) return null;
 
-    const start = (currentPage - 1) * itemsPerPage + 1;
-    const end = Math.min(currentPage * itemsPerPage, totalItems);
+    const start = (currentPage - 1) * pageSize + 1;
+    const end = Math.min(currentPage * pageSize, totalItems);
 
     return (
       <div className={tableStyles.pagination.info}>
@@ -114,6 +116,10 @@ const TablePagination = ({
         >
           Next
         </button>
+
+        {onPageSizeChange && pageSize && (
+          <TablePageSize value={pageSize} onChange={onPageSizeChange} />
+        )}
       </div>
     </div>
   );

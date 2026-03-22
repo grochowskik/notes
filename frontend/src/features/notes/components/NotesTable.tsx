@@ -5,18 +5,22 @@ import { usePagination } from '@/hooks';
 import { Icon, Table } from '@/ui';
 
 export function NotesTable() {
-  const { pageNo, pageSize, handlePageChange } = usePagination({ pageSize: 1 });
+  const { pageNo, pageSize, handlePageChange, handlePageSizeChange } =
+    usePagination({ pageSize: 1, tableId: 'notes' });
+
   const { data } = useNotesList({
     title: '',
     filters: { page: pageNo, page_size: pageSize, sort: 'title' },
   });
   const { mutate: deleteNote } = useNoteDelete();
+
   return (
     <Table
       currentPage={pageNo}
       totalPages={data?.pagination.total_pages ?? 0}
       pageSize={pageSize}
       onPageChange={handlePageChange}
+      onPageSizeChange={handlePageSizeChange}
     >
       <Table.Header>
         <Table.Row>
