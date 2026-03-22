@@ -19,6 +19,10 @@ function TableRoot({
   className,
   loading = false,
   loadingRows = 5,
+  currentPage,
+  totalPages,
+  pageSize,
+  onPageChange,
   ...props
 }: TableProps) {
   const getColumnCount = (): number => {
@@ -60,6 +64,16 @@ function TableRoot({
   return (
     <div className={cn([tableStyles.wrapper, className])} {...props}>
       <table className={tableStyles.table}>{renderChildren()}</table>
+      {currentPage !== undefined &&
+        totalPages !== undefined &&
+        onPageChange && (
+          <TablePagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            itemsPerPage={pageSize}
+            onPageChange={onPageChange}
+          />
+        )}
     </div>
   );
 }

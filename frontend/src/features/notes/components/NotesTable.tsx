@@ -1,16 +1,23 @@
 'use client';
 
 import { useNoteDelete, useNotesList } from '@/core/api/notes/hooks';
+import { usePagination } from '@/hooks';
 import { Icon, Table } from '@/ui';
 
 export function NotesTable() {
+  const { pageNo, pageSize, handlePageChange } = usePagination({ pageSize: 1 });
   const { data } = useNotesList({
     title: '',
-    filters: { page: 2, page_size: 1, sort: 'title' },
+    filters: { page: pageNo, page_size: pageSize, sort: 'title' },
   });
   const { mutate: deleteNote } = useNoteDelete();
   return (
-    <Table>
+    <Table
+      currentPage={pageNo}
+      totalPages={data?.pagination.total_pages ?? 0}
+      pageSize={pageSize}
+      onPageChange={handlePageChange}
+    >
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell>Title</Table.HeaderCell>

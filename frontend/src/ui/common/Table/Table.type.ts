@@ -5,6 +5,10 @@ export interface TableProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
   loading?: boolean;
   loadingRows?: number;
+  currentPage?: number;
+  totalPages?: number;
+  pageSize?: number;
+  onPageChange?: (page: number) => void;
 }
 
 export interface TableHeaderProps extends HTMLAttributes<HTMLTableSectionElement> {
