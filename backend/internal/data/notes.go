@@ -1,7 +1,9 @@
 package data
 
 import (
+	"context"
 	"database/sql"
+	"fmt"
 	"notes/internal/validator"
 	"time"
 
@@ -28,29 +30,45 @@ func ValidateNote(v *validator.Validator, note *Note) {
 	v.Check(len(note.Content) <= 5000, "content", "must not be more than 5000 bytes long")
 }
 
-func (n NoteModel) GetAll() ([]*Note, error) {
-	rows, err := n.DB.Query("SELECT id, created_at, title, content, version FROM notes")
+func (n NoteModel) GetAll(title string, filters Filters) ([]*Note, Pagination, error) {
+	query := fmt.Sprintf(`
+		SELECT COUNT(*) OVER(), id, title, content, version
+		FROM notes
+		WHERE (to_tsvector('simple', title) @@ plainto_tsquery('simple', $1) OR $1 = '')
+		ORDER BY %s %s, id ASC
+		LIMIT $2 OFFSET $3`, filters.sortColumn(), filters.sortDirection())
+
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	args := []any{title, filters.limit(), filters.offset()}
+
+	rows, err := n.DB.QueryContext(ctx, query, args...)
 	if err != nil {
-		return nil, err
+		return nil, Pagination{}, err
 	}
+
 	defer rows.Close()
 
+	totalRecords := 0
 	notes := []*Note{}
 
 	for rows.Next() {
 		note := &Note{}
-		err = rows.Scan(&note.ID, &note.CreatedAt, &note.Title, &note.Content, &note.Version)
+
+		err = rows.Scan(&totalRecords, &note.ID, &note.Title, &note.Content, &note.Version)
 		if err != nil {
-			return nil, err
+			return nil, Pagination{}, err
 		}
 		notes = append(notes, note)
 	}
 
 	if err = rows.Err(); err != nil {
-		return nil, err
+		return nil, Pagination{}, err
 	}
+	pagination := CalculatePagination(totalRecords, filters.Page, filters.PageSize)
 
-	return notes, nil
+	return notes, pagination, nil
 }
 
 func (n NoteModel) Insert(note *Note) error {

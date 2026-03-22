@@ -12,13 +12,32 @@ import (
 )
 
 func (h *Handlers) ShowNotesHandler(w http.ResponseWriter, r *http.Request) {
-	notes, err := h.Models.Notes.GetAll()
+	var input struct {
+		Title   string       `json:"title"`
+		Filters data.Filters `json:"filters"`
+	}
+
+	err := api.ReadJSON(w, r, &input)
+
+	if err != nil {
+		h.BadRequest(w, r, err)
+		return
+	}
+
+	v := validator.New()
+
+	input.Filters.SortSafelist = []string{"title", "-title"}
+
+	if data.ValidateFilters(v, input.Filters); !v.Valid() {
+		h.FailedValidation(w, r, v.Errors)
+		return
+	}
+
+	notes, pagination, err := h.Models.Notes.GetAll(input.Title, input.Filters)
 	if err != nil {
 		h.ServerError(w, r, err)
 		return
 	}
-
-	pagination := data.CalculatePagination(len(notes), 1, 10)
 
 	api.WriteJSON(w, http.StatusOK, api.Envelope{"notes": notes, "pagination": pagination}, nil)
 }
