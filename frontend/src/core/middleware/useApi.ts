@@ -55,6 +55,28 @@ export function useGet<TData = unknown, TParams = unknown>(
   });
 }
 
+export function useQueryPost<TData = unknown, TBody = unknown>(
+  url: string,
+  body?: TBody,
+  options: ApiQueryOptions = {}
+): UseQueryResult<TData, Error> {
+  return useQuery<TData, Error>({
+    queryKey: [url, body],
+    queryFn: async (): Promise<TData> => {
+      const response = await getRequestClass().post<ApiResponse<TData>>(url, body);
+      return response.data.result as TData;
+    },
+    staleTime: CACHE_TIME,
+    gcTime: CACHE_TIME,
+    refetchOnWindowFocus: false,
+    retry: (failureCount, error) =>
+      ErrorClassifier.shouldRetry(error, failureCount),
+    retryDelay: (attemptIndex, error) =>
+      ErrorClassifier.getRetryDelay(error, attemptIndex),
+    ...options,
+  });
+}
+
 function useMutationByMethod<TRequest = unknown, TResponse = unknown>(
   method: HttpMutationMethod,
   url: string,

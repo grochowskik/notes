@@ -1,4 +1,4 @@
-import { useDelete, useGet, usePatch, usePost } from '@/core';
+import { useDelete, useGet, usePatch, usePost, useQueryPost } from '@/core';
 import {
   CreateNoteRequest,
   DeleteNoteRequest,
@@ -13,7 +13,7 @@ export const useNote = (params?: NoteListRequest) => {
 };
 
 export const useNotesList = (params?: NoteListRequest) => {
-  return useGet<NoteListResponse>('/notes_list', params);
+  return useQueryPost<NoteListResponse>('/notes_list', params);
 };
 
 export const useNoteCreate = () => {

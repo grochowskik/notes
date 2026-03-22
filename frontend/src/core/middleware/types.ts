@@ -72,3 +72,9 @@ export interface Pagination {
   total_records: number;
   total_pages: number;
 }
+
+export interface Filters {
+  page?: number;
+  page_size?: number;
+  sort?: string;
+}

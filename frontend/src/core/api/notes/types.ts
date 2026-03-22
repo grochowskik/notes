@@ -1,4 +1,4 @@
-import { Pagination } from '@/core';
+import { type Filters, type Pagination } from '@/core';
 
 export interface Note {
   id: string;
@@ -8,9 +8,8 @@ export interface Note {
 }
 
 export interface NoteListRequest {
-  limit?: number;
-  startDate?: string;
-  endDate?: string;
+  title?: string;
+  filters?: Filters;
 }
 
 export interface NoteListResponse {

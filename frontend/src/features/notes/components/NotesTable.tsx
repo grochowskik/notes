@@ -4,7 +4,10 @@ import { useNoteDelete, useNotesList } from '@/core/api/notes/hooks';
 import { Icon, Table } from '@/ui';
 
 export function NotesTable() {
-  const { data } = useNotesList();
+  const { data } = useNotesList({
+    title: '',
+    filters: { page: 2, page_size: 1, sort: 'title' },
+  });
   const { mutate: deleteNote } = useNoteDelete();
   return (
     <Table>

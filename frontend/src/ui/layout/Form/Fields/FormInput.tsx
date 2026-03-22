@@ -2,7 +2,7 @@
 
 import { cn } from '@/utils';
 import { CircleAlert } from 'lucide-react';
-import React, { memo } from 'react';
+import React from 'react';
 import { useFormContext, useFormState } from 'react-hook-form';
 import { formStyles } from './FormInput.styles';
 
@@ -11,7 +11,7 @@ export interface FormInputProps extends React.InputHTMLAttributes<HTMLInputEleme
   label: string;
 }
 
-function FormInputComponent({
+function FormInput({
   name,
   label,
   className = '',
@@ -65,8 +65,5 @@ function FormInputComponent({
     </div>
   );
 }
-
-const FormInput = memo(FormInputComponent);
-FormInput.displayName = 'FormInput';
 
 export default FormInput;

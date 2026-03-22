@@ -8,6 +8,7 @@ export {
   usePatch,
   usePost,
   usePut,
+  useQueryPost,
 } from './middleware/useApi';
 
-export { type Pagination } from './middleware/types';
+export { type Filters, type Pagination } from './middleware/types';
