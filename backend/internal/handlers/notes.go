@@ -11,7 +11,7 @@ import (
 	"github.com/google/uuid"
 )
 
-func (h *Handlers) ShowNotesHandler(w http.ResponseWriter, r *http.Request) {
+func (h *Handlers) showNotesHandler(w http.ResponseWriter, r *http.Request) {
 	var input struct {
 		Title   string       `json:"title"`
 		Filters data.Filters `json:"filters"`
@@ -42,7 +42,7 @@ func (h *Handlers) ShowNotesHandler(w http.ResponseWriter, r *http.Request) {
 	api.WriteJSON(w, http.StatusOK, api.Envelope{"notes": notes, "pagination": pagination}, nil)
 }
 
-func (h *Handlers) CreateNoteHandler(w http.ResponseWriter, r *http.Request) {
+func (h *Handlers) createNoteHandler(w http.ResponseWriter, r *http.Request) {
 
 	var input struct {
 		Title   string `json:"title"`
@@ -84,7 +84,7 @@ func (h *Handlers) CreateNoteHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (h *Handlers) DeleteNoteHandler(w http.ResponseWriter, r *http.Request) {
+func (h *Handlers) deleteNoteHandler(w http.ResponseWriter, r *http.Request) {
 	var input struct {
 		ID uuid.UUID `json:"id"`
 	}
