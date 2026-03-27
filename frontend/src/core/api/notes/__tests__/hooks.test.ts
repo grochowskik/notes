@@ -1,10 +1,10 @@
 import { renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import {
-  useCancelNote,
-  useCreateNote,
+  useNoteCreate,
+  useNoteDelete,
   useNotesList,
-  useUpdateNote,
+  useNoteUpdate,
 } from '../hooks';
 
 vi.mock('@/core', () => ({
@@ -46,7 +46,9 @@ describe('useNotesList', () => {
   });
 
   it('forwards params to useGet', () => {
-    const params = { page: 2, limit: 10, status: 'pending' as const };
+    const params = {
+      filters: { page: 2, page_size: 10, sort: 'title' as const },
+    };
     renderHook(() => useNotesList(params));
     expect(useGet).toHaveBeenCalledWith('/notes_list', params);
   });
@@ -57,9 +59,9 @@ describe('useNotesList', () => {
   });
 });
 
-describe('useCreateNote', () => {
+describe('useNoteCreate', () => {
   it('calls usePost with /notes_create', () => {
-    renderHook(() => useCreateNote());
+    renderHook(() => useNoteCreate());
     expect(usePost).toHaveBeenCalledWith(
       '/notes_create',
       expect.objectContaining({ invalidateQueriesList: ['/notes_list'] })
@@ -67,14 +69,14 @@ describe('useCreateNote', () => {
   });
 
   it('returns the mutation result', () => {
-    const { result } = renderHook(() => useCreateNote());
+    const { result } = renderHook(() => useNoteCreate());
     expect(result.current).toBe(mockMutationResult);
   });
 });
 
-describe('useUpdateNote', () => {
+describe('useNoteUpdate', () => {
   it('calls usePatch with /notes_update and invalidates list + get', () => {
-    renderHook(() => useUpdateNote());
+    renderHook(() => useNoteUpdate());
     expect(usePatch).toHaveBeenCalledWith(
       '/notes_update',
       expect.objectContaining({
@@ -84,9 +86,9 @@ describe('useUpdateNote', () => {
   });
 });
 
-describe('useCancelNote', () => {
+describe('useNoteDelete', () => {
   it('calls useDelete with /notes_cancel and invalidates list + get', () => {
-    renderHook(() => useCancelNote());
+    renderHook(() => useNoteDelete());
     expect(useDelete).toHaveBeenCalledWith(
       '/notes_cancel',
       expect.objectContaining({

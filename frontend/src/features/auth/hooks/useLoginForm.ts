@@ -1,5 +1,6 @@
 'use client';
 
+import { useLogin } from '@/core';
 import { toastNotification, useRedirect } from '@/hooks';
 import { setLoggedIn, setRole } from '@/redux/slice/user';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,6 +10,7 @@ import { loginSchema, type LoginFormValues } from '../schemas/login.schema';
 
 export function useLoginForm() {
   const { redirect } = useRedirect();
+  const { mutate: login } = useLogin();
   const dispatch = useDispatch();
 
   const methods = useForm<LoginFormValues>({
@@ -22,19 +24,15 @@ export function useLoginForm() {
   });
 
   const onSubmit = async (data: LoginFormValues) => {
-    try {
-      void data;
-      document.cookie = 'auth_session=1; path=/; SameSite=Lax';
-      dispatch(setLoggedIn({ isLoggedIn: true }));
-      dispatch(setRole('user'));
-      toastNotification({
-        title: 'Logowanie',
-        details: 'Pomyślnie zalogowano',
-      });
-      redirect({ url: '/dashboard' });
-    } catch (error) {
-      console.error('Form submission failed:', error);
-    }
+    await login({ email: data.email, password: data.password });
+    document.cookie = 'auth_session=1; path=/; SameSite=Lax';
+    dispatch(setLoggedIn({ isLoggedIn: true }));
+    dispatch(setRole('user'));
+    toastNotification({
+      title: 'Logowanie',
+      details: 'Pomyślnie zalogowano',
+    });
+    redirect({ url: '/dashboard' });
   };
 
   return { methods, onSubmit };

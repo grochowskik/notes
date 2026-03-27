@@ -1,6 +1,6 @@
 'use client';
 
-import { useNoteDelete, useNotesList } from '@/core/api/notes/hooks';
+import { useNoteDelete, useNotesList } from '@/core';
 import { usePagination } from '@/hooks';
 import { Icon, Table } from '@/ui';
 
@@ -9,7 +9,6 @@ export function NotesTable() {
     usePagination({ pageSize: 1, tableId: 'notes' });
 
   const { data } = useNotesList({
-    title: '',
     filters: { page: pageNo, page_size: pageSize, sort: 'title' },
   });
   const { mutate: deleteNote } = useNoteDelete();

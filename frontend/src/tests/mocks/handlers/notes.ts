@@ -3,21 +3,19 @@ import { http, HttpResponse } from 'msw';
 
 export const mockNote: Note = {
   id: 'note-1',
-  amount: 1000,
-  currency: 'PLN',
-  status: 'pending',
-  type: 'deposit',
-  createdAt: '2024-01-15T10:00:00Z',
-  updatedAt: '2024-01-15T10:00:00Z',
-  description: 'Test note',
+  title: 'Test Note',
+  content: 'This is a test note.',
+  version: 1,
 };
 
 export const mockNoteListResponse: NoteListResponse = {
   notes: [mockNote],
-  total: 1,
-  page: 1,
-  limit: 20,
-  hasMore: false,
+  pagination: {
+    page: 1,
+    page_size: 20,
+    total_records: 10,
+    total_pages: 1,
+  },
 };
 
 export const notesHandlers = [
